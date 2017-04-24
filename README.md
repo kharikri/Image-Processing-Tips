@@ -30,15 +30,21 @@ Both OpenCV and Matplotlib can be used to read and display images. OpenCV reads 
         imageBGR = cv2.imread(‘images/test5.jpg’)
         imageRGB = cv2.cvtColor(imageBGR, cv2.COLOR_BGR2RGB)
         plt.imshow(imageRGB)
-To avoid this color conversion I use Matplotlib for reading and displaying images which keeps everything in the RGB color space. We can still use OpenCV for image processing functions as it supports direct conversion from RGB to any other color space with the cvtColor() command
-As a side note, for grayscale images there is no issue reading them with OpenCV and displaying with Matplotlib as there is only one color channel and conversion is not needed:
+* To avoid this color conversion I use Matplotlib for reading and displaying images which keeps everything in the RGB color space. We can still use OpenCV for image processing functions as it supports direct conversion from RGB to any other color space with the `cvtColor()` command
+* As a side note, for grayscale images there is no issue reading them with OpenCV and displaying with Matplotlib as there is only one color channel and conversion is not needed:
 
-image = cv2.imread(‘images/charlie_grayscale.jpg’)
-plt.imshow(image, cmap = ‘gray’)
-Why convert to grayscale from color?
+        image = cv2.imread(‘images/charlie_grayscale.jpg’)
+        plt.imshow(image, cmap = ‘gray’)
+
+# Why convert to grayscale from color?
+
 Many image processing and computer vision algorithms (Canny, Hough, Sobel) use grayscale images rather than color images. These tasks involve edge detection and color information is not useful, hence grayscale is just fine. Also grayscale processing is at least three times faster than that of color image processing. This is because grayscale image has only one color channel as opposed to three in a color image. I have shown an example of this time savings in the example code.
-Why normalize data before training?
+
+# Why normalize data before training?
+
 When we normalize data we typically make the data have zero mean and unit variance with a formula such as:
+![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/NormalizationFormula.png)
+
 For example, for a grayscale image Xmin is 0, Xmax is 255 and Xnorm is between 0 and 1.
 We get two benefits with normalization. First, if data is not normalized, features with larger numerical values dominate features with smaller numerical values and consequently we will not get contributions from features with smaller values. In Project 5 — Vehicle Detection and Tracking, if we are extracting three different kinds of features (HOG, Spatial binning, and Color transforms) it is an absolute must to normalize them. Otherwise larger feature values will dominate smaller feature values.
 Second, many learning algorithms behave well with normalized data. This manifests in higher test accuracy for normalized data than with non-normalized data. We can easily check this with Project 2 on Traffic Classification.
