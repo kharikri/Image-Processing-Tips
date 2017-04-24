@@ -44,17 +44,33 @@ Many image processing and computer vision algorithms (Canny, Hough, Sobel) use g
 
 When we normalize data we typically make the data have zero mean and unit variance with a formula such as:
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/NormalizationFormula.png)
-
 For example, for a grayscale image Xmin is 0, Xmax is 255 and Xnorm is between 0 and 1.
+
 We get two benefits with normalization. First, if data is not normalized, features with larger numerical values dominate features with smaller numerical values and consequently we will not get contributions from features with smaller values. In Project 5 — Vehicle Detection and Tracking, if we are extracting three different kinds of features (HOG, Spatial binning, and Color transforms) it is an absolute must to normalize them. Otherwise larger feature values will dominate smaller feature values.
+
 Second, many learning algorithms behave well with normalized data. This manifests in higher test accuracy for normalized data than with non-normalized data. We can easily check this with Project 2 on Traffic Classification.
-How to deal with PNG and JPEG images?
-We will have situations where we will have training data in PNG format and test data in JPEG format (Project 5 — Vehicle Detection and Tracking) or the reverse. As mentioned before, in such situations I prefer reading the image data in OpenCV instead of Matplotlib. The reason being OpenCV reads both PNG and JPG in 0 to 255 range while Matplotlib reads JPEG in 0 to 255 and PNG on 0 to 1 range! With Matplotlib if we do not scale the image data appropriately we will get strange results.
+
+# How to deal with PNG and JPEG images?
+
+We will have situations where we will have training data in PNG format and test data in JPEG format ([Project 5 — Vehicle Detection and Tracking](https://github.com/kharikri/SelfDrivingCar-VehicleDetectionAndTracking)) or the reverse. As mentioned before, in such situations I prefer reading the image data in OpenCV instead of Matplotlib. The reason being OpenCV reads both PNG and JPG in 0 to 255 range while Matplotlib reads JPEG in 0 to 255 and PNG on 0 to 1 range! With Matplotlib if we do not scale the image data appropriately we will get strange results.
+
 To illustrate this I’ll draw bounding boxes around cars which are detected on the road (Project 5). The original image is a JPEG image as shown below:
-Original ImageIn this example I have already trained a Support Vector Machine (SVM) with PNG files which were read with Matplotlib. If we do not account for scaling we get the following result. This incorrect result is because Matplotlib reads PNG in 0 to 1 range and JPEG in 0 to 255 and we need to scale appropriately.
-Bounding boxes on unscaled ImageTo scale the JPEG image divide the test image data by 255 with the following line of code:
-image= image.astype(np.float32)/255
+![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/OriginalImage.png)
+Original Image
+
+In this example I have already trained a Support Vector Machine (SVM) with PNG files which were read with Matplotlib. If we do not account for scaling we get the following result. This incorrect result is because Matplotlib reads PNG in 0 to 1 range and JPEG in 0 to 255 and we need to scale appropriately.
+![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/BBUnscaledImage.png)
+Bounding boxes on unscaled Image
+
+To scale the JPEG image divide the test image data by 255 with the following line of code:
+`image= image.astype(np.float32)/255`
+
 This result is shown in the following picture:
-Bounding boxes on scaled ImageTo avoid these scaling issues I simply use OpenCV when I have to process both PNG and JPEG image formats as it reads these two image formats in the same (0 to 255) range.
-Conclusion
+![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/BBScaledImage.png)
+Bounding boxes on scaled Image
+
+To avoid these scaling issues I simply use OpenCV when I have to process both PNG and JPEG image formats as it reads these two image formats in the same (0 to 255) range.
+
+# Conclusion
+
 The image processing tips mentioned above in this post are straightforward and easy to follow and will save time and frustration when debugging computer vision and deep learning algorithms.
