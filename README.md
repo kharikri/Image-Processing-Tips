@@ -6,7 +6,7 @@ I just finished term 1 of the Udacity self-driving car course. Term 1 has five p
 
 Both OpenCV and Matplotlib can be used to read and display images. OpenCV reads and plots an image in the BGR format while Matplotlib reads and plots in the RGB format. I like to use Matplotlib to read and display images as 1) it is convenient to plot inside a Jupyter notebook and 2) by reading in Matplotlib I don’t have to convert to a different color space for display. However, if I am processing both PNG and JPEG image formats, I use OpenCV (reasons discussed later). Here is some code to illustrate these points (Check my github repository for [example code](https://github.com/kharikri/ImageProcessingTips/blob/master/Image%20Processing%20Tips%20Example%20Code.ipynb)):
 
-To read and display images in OpenCV:
+* To read and display images in OpenCV:
 
     import cv2
 
@@ -15,7 +15,7 @@ To read and display images in OpenCV:
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-To read and display images with Matplotlib:
+* To read and display images with Matplotlib:
 
     import matplotlib.image as mpimg
     import matplotlib.pyplot as plt
