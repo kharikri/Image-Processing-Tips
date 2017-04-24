@@ -44,8 +44,7 @@ Many image processing and computer vision algorithms (Canny, Hough, Sobel) use g
 
 When we normalize data we typically make the data have zero mean and unit variance with a formula such as:
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/NormalizationFormula.png)
-
-For example, for a grayscale image Xmin is 0, Xmax is 255 and Xnorm is between 0 and 1.
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; For example, for a grayscale image Xmin is 0, Xmax is 255 and Xnorm is between 0 and 1.
 
 We get two benefits with normalization. First, if data is not normalized, features with larger numerical values dominate features with smaller numerical values and consequently we will not get contributions from features with smaller values. In Project 5 — Vehicle Detection and Tracking, if we are extracting three different kinds of features (HOG, Spatial binning, and Color transforms) it is an absolute must to normalize them. Otherwise larger feature values will dominate smaller feature values.
 
@@ -59,13 +58,13 @@ To illustrate this I’ll draw bounding boxes around cars which are detected on 
 
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/OriginalImage.png)
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Original Image
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Original Image
 
 In this example I have already trained a Support Vector Machine (SVM) with PNG files which were read with Matplotlib. If we do not account for scaling we get the following result. This incorrect result is because Matplotlib reads PNG in 0 to 1 range and JPEG in 0 to 255 and we need to scale appropriately.
 
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/BBUnscaledImage.png)
 
-&nbsp; &nbsp; &nbsp; Bounding boxes on unscaled Image
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Bounding boxes on unscaled Image
 
 To scale the JPEG image divide the test image data by 255 with the following line of code:
 `image= image.astype(np.float32)/255`
@@ -74,7 +73,7 @@ This result is shown in the following picture:
 
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/BBScaledImage.png)
 
-&nbsp; &nbsp; &nbsp; Bounding boxes on scaled Image
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Bounding boxes on scaled Image
 
 To avoid these scaling issues I simply use OpenCV when I have to process both PNG and JPEG image formats as it reads these two image formats in the same (0 to 255) range.
 
