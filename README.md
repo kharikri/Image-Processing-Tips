@@ -56,19 +56,22 @@ Second, many learning algorithms behave well with normalized data. This manifest
 We will have situations where we will have training data in PNG format and test data in JPEG format ([Project 5 — Vehicle Detection and Tracking](https://github.com/kharikri/SelfDrivingCar-VehicleDetectionAndTracking)) or the reverse. As mentioned before, in such situations I prefer reading the image data in OpenCV instead of Matplotlib. The reason being OpenCV reads both PNG and JPG in 0 to 255 range while Matplotlib reads JPEG in 0 to 255 and PNG on 0 to 1 range! With Matplotlib if we do not scale the image data appropriately we will get strange results.
 
 To illustrate this I’ll draw bounding boxes around cars which are detected on the road (Project 5). The original image is a JPEG image as shown below:
+
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/OriginalImage.png)
-Original Image
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Original Image
 
 In this example I have already trained a Support Vector Machine (SVM) with PNG files which were read with Matplotlib. If we do not account for scaling we get the following result. This incorrect result is because Matplotlib reads PNG in 0 to 1 range and JPEG in 0 to 255 and we need to scale appropriately.
+
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/BBUnscaledImage.png)
-Bounding boxes on unscaled Image
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bounding boxes on unscaled Image
 
 To scale the JPEG image divide the test image data by 255 with the following line of code:
 `image= image.astype(np.float32)/255`
 
 This result is shown in the following picture:
+
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/BBScaledImage.png)
-Bounding boxes on scaled Image
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bounding boxes on scaled Image
 
 To avoid these scaling issues I simply use OpenCV when I have to process both PNG and JPEG image formats as it reads these two image formats in the same (0 to 255) range.
 
