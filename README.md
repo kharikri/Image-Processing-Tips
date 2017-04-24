@@ -55,7 +55,7 @@ Second, many learning algorithms behave well with normalized data. This manifest
 We will have situations where we will have training data in PNG format and test data in JPEG format ([Project 5 — Vehicle Detection and Tracking](https://github.com/kharikri/SelfDrivingCar-VehicleDetectionAndTracking)) or the reverse. As mentioned before, in such situations I prefer reading the image data in OpenCV instead of Matplotlib. The reason being OpenCV reads both PNG and JPG in 0 to 255 range while Matplotlib reads JPEG in 0 to 255 and PNG on 0 to 1 range! With Matplotlib if we do not scale the image data appropriately we will get strange results.
 
 To illustrate this I’ll draw bounding boxes around cars which are detected on the road (Project 5). The original image is a JPEG image as shown below:
-
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 ![alt text](https://github.com/kharikri/ImageProcessingTips/blob/master/Images/OriginalImage.png)
 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Original Image
