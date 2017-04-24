@@ -8,21 +8,21 @@ Both OpenCV and Matplotlib can be used to read and display images. OpenCV reads 
 
 * To read and display images in OpenCV:
 
-    import cv2
+        import cv2
 
-    image = cv2.imread(‘images/test.jpg’)
-    cv2.imshow( “Display window”, image )
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+        image = cv2.imread(‘images/test.jpg’)
+        cv2.imshow( “Display window”, image )
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
 * To read and display images with Matplotlib:
 
-    import matplotlib.image as mpimg
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+        import matplotlib.image as mpimg
+        import matplotlib.pyplot as plt
+        %matplotlib inline
 
-    image = mpimg.imread(‘images/test.jpg’)
-    plt.imshow(image)
+        image = mpimg.imread(‘images/test.jpg’)
+        plt.imshow(image)
 
 Displaying in OpenCV opens another window. With Matplotlib we can display inline inside a Jupyter notebook which is very convenient
 OpenCV reads and plots an image in the BGR format while Matplotlib reads and plots in the RGB format. Hence if we read an image with OpenCV and to display with Matplotlib, we need to convert it from BGR to RGB format as follows:
